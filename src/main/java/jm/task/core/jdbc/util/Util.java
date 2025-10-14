@@ -1,4 +1,8 @@
 package jm.task.core.jdbc.util;
+import org.hibernate.SessionFactory;
+import org.hibernate.boot.MetadataSources;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.service.ServiceRegistry;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -22,5 +26,10 @@ public class Util {
             System.out.println("NO");
         }
         return connection;
+    }
+    public static SessionFactory getsf(){
+       ServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
+       SessionFactory sf = new MetadataSources(registry).buildMetadata().buildSessionFactory();
+       return sf;
     }
 }
