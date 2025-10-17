@@ -12,33 +12,53 @@ public class UserServiceImpl implements UserService {
     UserDaoHibernateImpl userDaoHibernate = new UserDaoHibernateImpl();
 
     public void createUsersTable() {
-           userDaoHibernate.createUsersTable();
+
+        try {
+            userDao.createUsersTable();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    public void dropUsersTable() {userDaoHibernate.dropUsersTable();
+    public void dropUsersTable() {
+        userDao.dropUsersTable();
     }
 
     public void saveUser(String name, String lastName, byte age) {
 
-            userDaoHibernate.saveUser(name,lastName,age);
+
+        try {
+            userDao.saveUser(name,lastName,age);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 
     public void removeUserById(long id) {
 
-            userDaoHibernate.removeUserById(id);
+
+        try {
+            userDao.removeUserById(id);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 
     public List<User> getAllUsers() {
 
 
-            return userDaoHibernate.getAllUsers();
+        try {
+            return userDao.getAllUsers();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 
     public void cleanUsersTable() {
 
-        userDaoHibernate.cleanUsersTable();
+        userDao.cleanUsersTable();
     }
 }
